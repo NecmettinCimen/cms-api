@@ -1,0 +1,5 @@
+/appsettings.Development.json
+/bin
+/CmsContext.db-shm
+/CmsContext.db-wal
+/obj
