@@ -14,12 +14,12 @@ namespace TESTS
 
             };
         }
-        [Fact]
+        // [Fact]
         public override async Task GetAll()
         {
             await base.GetAll();
         }
-        [Fact]
+        // [Fact]
         public override async Task AddUpdateDeleteAsync()
         {
             await base.AddUpdateDeleteAsync();

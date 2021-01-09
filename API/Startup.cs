@@ -46,13 +46,12 @@ namespace cms_api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "cms_api v1");
-                });
             }
-
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "cms_api v1");
+            });
             app.UseAuthentication();
 
             app.UseMiddleware<ResponseWrapper>();
