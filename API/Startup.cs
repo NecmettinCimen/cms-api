@@ -38,11 +38,19 @@ namespace cms_api
 
             services.AddJwt();
 
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors("MyPolicy");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -55,8 +63,6 @@ namespace cms_api
             app.UseAuthentication();
 
             app.UseMiddleware<ResponseWrapper>();
-
-            app.UseHttpsRedirection();
 
             app.UseRouting();
 

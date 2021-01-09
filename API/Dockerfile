@@ -14,3 +14,5 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "cms-api.dll"]
+
+EXPOSE 80
