@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using cms_api.Models;
 using Xunit;
@@ -11,7 +12,11 @@ namespace TESTS
             Controller = "Project";
             model = new Project
             {
-
+                Type = "Type",
+                Name = "Name",
+                Description = "Description",
+                Date = DateTime.Now,
+                Link = "Link"
             };
         }
         [Fact]

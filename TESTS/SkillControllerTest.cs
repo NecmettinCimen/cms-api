@@ -11,7 +11,9 @@ namespace TESTS
             Controller = "Skill";
             model = new Skill
             {
-
+                Name = "Name",
+                Description = "Description",
+                Icon = "Icon"
             };
         }
         [Fact]

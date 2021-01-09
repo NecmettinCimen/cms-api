@@ -21,7 +21,7 @@ namespace cms_api.Helper
         [DataMember(EmitDefaultValue = false)]
         public string CorreletionId { get; set; }
         [DataMember(EmitDefaultValue = false)]
-        public object Result { get; set; }
+        public dynamic Result { get; set; }
         protected CommonApiResponse(HttpStatusCode statusCode, object result = null, string errorMessage = null, string correletionId = null, string errorCode = null)
         {
             CorreletionId = correletionId;

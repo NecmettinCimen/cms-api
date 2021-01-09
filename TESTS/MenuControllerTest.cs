@@ -4,14 +4,16 @@ using Xunit;
 
 namespace TESTS
 {
-    public class MenuControllerTest:BaseControllerTest<Menu>
+    public class MenuControllerTest : BaseControllerTest<Menu>
     {
         public MenuControllerTest()
         {
-           Controller="Menu";
-           model = new Menu{
-
-           };
+            Controller = "Menu";
+            model = new Menu
+            {
+                Name = "Name",
+                Link = "Link"
+            };
         }
         [Fact]
         public override async Task GetAll()

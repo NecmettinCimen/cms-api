@@ -11,7 +11,10 @@ namespace TESTS
             Controller = "User";
             model = new User
             {
-
+                Name = "Name",
+                SurName = "SurName",
+                Email = "Email",
+                Password = "Password"
             };
         }
         [Fact]

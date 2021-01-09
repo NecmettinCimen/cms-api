@@ -4,14 +4,16 @@ using Xunit;
 
 namespace TESTS
 {
-    public class ParameterControllerTest:BaseControllerTest<Parameter>
+    public class ParameterControllerTest : BaseControllerTest<Parameter>
     {
         public ParameterControllerTest()
         {
-           Controller="Parameter";
-           model = new Parameter{
-
-           };
+            Controller = "Parameter";
+            model = new Parameter
+            {
+                Code = "Code",
+                Value = "Value"
+            };
         }
         [Fact]
         public override async Task GetAll()

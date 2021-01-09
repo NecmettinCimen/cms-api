@@ -1,16 +1,23 @@
+using System;
 using System.Threading.Tasks;
 using cms_api.Models;
 using Xunit;
 
 namespace TESTS
 {
-    public class ExperienceControllerTest:BaseControllerTest<Experience>
+    public class ExperienceControllerTest : BaseControllerTest<Experience>
     {
         public ExperienceControllerTest()
         {
-            Controller="Experience";
-            model = new Experience{
-
+            Controller = "Experience";
+            model = new Experience
+            {
+                Type = "Type",
+                Name = "Name",
+                Description = "Description",
+                Organization = "Organization",
+                OrganizationLink = "OrganizationLink",
+                StartingDate = DateTime.Now
             };
         }
         [Fact]
