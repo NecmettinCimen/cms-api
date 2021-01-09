@@ -54,6 +54,9 @@ namespace cms_api.Repositories
         {
             try
             {
+                if (!await _cmsContext.Set<TEntity>().AnyAsync(a => a.Id == entity.Id))
+                    throw new Exception($"{nameof(entity)} could not be finded: {entity.Id}");
+                
                 _cmsContext.Update(entity);
                 await _cmsContext.SaveChangesAsync();
 

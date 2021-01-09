@@ -1,5 +1,7 @@
-/appsettings.Development.json
-/bin
-/CmsContext.db-shm
-/CmsContext.db-wal
-/obj
+/API/appsettings.Development.json
+/API/CmsContext.db-shm
+/API/CmsContext.db-wal
+/API/bin
+/API/obj
+/TESTS/bin
+/TESTS/obj
