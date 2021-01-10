@@ -92,8 +92,7 @@ This is an example of how to list things you need to use the software and how to
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/necmettincimen/cms-api.git
    ```
@@ -101,13 +100,13 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    cd cms-api && cd API
    ```
-3. Run Project
+2. Run Project
    ```sh
    dotnet run
    ```
-4. Goto
+3. Goto
    ```HTML
-   https://localhost:5001/swagger
+   https://localhost/swagger
    ```
 
 

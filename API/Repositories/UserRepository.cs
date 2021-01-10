@@ -24,7 +24,9 @@ namespace cms_api.Repositories
 
         public async Task<string> Authenticate(LoginDto model)
         {
-            var user = await userRepository.GetAll().FirstAsync(f=>f.Email == model.Email && f.Password == model.Password);
+            var user = await userRepository.GetAll().FirstOrDefaultAsync(f=>f.Email == model.Email && f.Password == model.Password);
+            if(user==null)
+                throw new Exception("Email or password is incorrect");
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(JwtExtension.Key);
