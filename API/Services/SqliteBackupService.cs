@@ -42,19 +42,27 @@ namespace cms_api.Services
         {
             if (istelsayi != 0 || hatasayisi != 0 || kayitsayisi != 0)
             {
-                var body = File.ReadAllText(".\\EmailTemplates\\cms-api-summary-api-template.html")
+                try
+                {
+                    var body = File.ReadAllText(".\\EmailTemplates\\cms-api-summary-api-template.html")
             .Replace("zaman", DateTime.Now.ToString())
             .Replace("istelsayi", istelsayi.ToString())
             .Replace("hatasayisi", hatasayisi.ToString())
             .Replace("kayitsayisi", kayitsayisi.ToString());
-                var msg = new MailMessage(configuration["SqliteBackupService:MailMessage:FromMailAdress"], configuration["SqliteBackupService:MailMessage:ToMailAdress"], $"Cms Api Summary", body);
-                msg.IsBodyHtml = true;
-                msg.Attachments.Add(new Attachment(".\\CmsContext.db"));
+                    var msg = new MailMessage(configuration["SqliteBackupService:MailMessage:FromMailAdress"], configuration["SqliteBackupService:MailMessage:ToMailAdress"], $"Cms Api Summary", body);
+                    msg.IsBodyHtml = true;
+                    msg.Attachments.Add(new Attachment(".\\CmsContext.db"));
 
-                var smtpClient = new SmtpClient("smtp.yandex.ru", 587);
-                smtpClient.Credentials = new NetworkCredential(configuration["SqliteBackupService:NetworkCredential:UserName"], configuration["SqliteBackupService:NetworkCredential:Password"]);
-                smtpClient.EnableSsl = true;
-                smtpClient.Send(msg);
+                    var smtpClient = new SmtpClient("smtp.yandex.ru", 587);
+                    smtpClient.Credentials = new NetworkCredential(configuration["SqliteBackupService:NetworkCredential:UserName"], configuration["SqliteBackupService:NetworkCredential:Password"]);
+                    smtpClient.EnableSsl = true;
+                    smtpClient.Send(msg);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogInformation(
+                        "SqliteBackupService is error. {ex}", ex);
+                }
             }
 
             _logger.LogInformation(
