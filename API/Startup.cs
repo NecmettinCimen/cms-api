@@ -57,6 +57,8 @@ namespace cms_api
             });
             app.UseAuthentication();
 
+            app.UseStaticFiles();
+
             app.UseMiddleware<ResponseWrapper>();
 
             app.UseRouting();

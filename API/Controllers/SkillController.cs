@@ -1,5 +1,10 @@
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 using cms_api.Models;
 using cms_api.Repositories;
+using cms_api.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace cms_api.Controllers
@@ -12,6 +17,30 @@ namespace cms_api.Controllers
         public SkillController(IBaseRepository<Skill> tReposiory) : base(tReposiory)
         {
             this.tReposiory = tReposiory;
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        public override async Task<Skill> AddAsync([FromForm]Skill entity)
+        {
+            var file = Request.Form.Files.First();
+            entity.Icon = Path.Combine(Request.Host.Host , await AssetsManageService.Save("Skill_Icons", file.FileName, file));
+            var result = await tReposiory.AddAsync(entity);
+            return result;
+        }
+
+        [Authorize]
+        [HttpPut]
+        public override async Task<Skill> UpdateAsync([FromForm]Skill entity)
+        {
+            if (Request.Form.Files.Any())
+            {
+                var file = Request.Form.Files.First();
+                entity.Icon = Path.Combine(Request.Host.Host , await AssetsManageService.Save("Skill_Icons", file.FileName, file));
+            }
+            var result = await tReposiory.UpdateAsync(entity);
+            return result;
         }
     }
 }
