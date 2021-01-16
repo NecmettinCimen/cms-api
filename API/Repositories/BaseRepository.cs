@@ -39,6 +39,8 @@ namespace cms_api.Repositories
         {
             try
             {
+                Services.SqliteBackupService.kayitsayisi++;
+
                 await _cmsContext.AddAsync(entity);
                 await _cmsContext.SaveChangesAsync();
 
@@ -56,7 +58,9 @@ namespace cms_api.Repositories
             {
                 if (!await _cmsContext.Set<TEntity>().AnyAsync(a => a.Id == entity.Id))
                     throw new Exception($"{nameof(entity)} could not be finded: {entity.Id}");
-                
+
+                Services.SqliteBackupService.kayitsayisi++;
+
                 _cmsContext.Update(entity);
                 await _cmsContext.SaveChangesAsync();
 
@@ -71,6 +75,8 @@ namespace cms_api.Repositories
         {
             try
             {
+                Services.SqliteBackupService.kayitsayisi++;
+
                 entity.IsDeleted = true;
                 _cmsContext.Update(entity);
                 await _cmsContext.SaveChangesAsync();

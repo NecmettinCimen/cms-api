@@ -21,6 +21,9 @@
   <Content Include=".\CmsContext.db"> 
     <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> 
   </Content> 
+    <Content Include=".\EmailTemplates\cms-api-summary-api-template.html"> 
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory> 
+  </Content> 
 </ItemGroup>
 
 </Project>

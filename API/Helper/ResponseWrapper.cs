@@ -22,6 +22,7 @@ namespace cms_api.Helper
                 context.Response.Body = memoryStream;
                 try
                 {
+                    Services.SqliteBackupService.istelsayi++;
                     await _next(context);
 
                     context.Response.Body = currentBody;
@@ -41,6 +42,8 @@ namespace cms_api.Helper
                 }
                 catch (Exception ex)
                 {
+                    Services.SqliteBackupService.hatasayisi++;
+
                     Console.WriteLine(ex);
                     context.Response.Body = currentBody;
                     memoryStream.Seek(0, SeekOrigin.Begin);
