@@ -22,6 +22,7 @@ namespace cms_api
             .ConfigureServices(services =>
             {
                 services.AddHostedService<SqliteBackupService>();
+                services.AddHostedService<EmailService>();
             });
     }
 }

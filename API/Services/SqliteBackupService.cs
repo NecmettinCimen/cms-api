@@ -49,14 +49,8 @@ namespace cms_api.Services
             .Replace("istelsayi", istelsayi.ToString())
             .Replace("hatasayisi", hatasayisi.ToString())
             .Replace("kayitsayisi", kayitsayisi.ToString());
-                    var msg = new MailMessage(configuration["SqliteBackupService:MailMessage:FromMailAdress"], configuration["SqliteBackupService:MailMessage:ToMailAdress"], $"Cms Api Summary", body);
-                    msg.IsBodyHtml = true;
-                    msg.Attachments.Add(new Attachment(".\\CmsContext.db"));
 
-                    var smtpClient = new SmtpClient("smtp.yandex.ru", 587);
-                    smtpClient.Credentials = new NetworkCredential(configuration["SqliteBackupService:NetworkCredential:UserName"], configuration["SqliteBackupService:NetworkCredential:Password"]);
-                    smtpClient.EnableSsl = true;
-                    smtpClient.Send(msg);
+                    EmailManage.AddEmailQueue(configuration, $"Cms Api Summary", body, attachment: new Attachment(".\\CmsContext.db"));
                 }
                 catch (Exception ex)
                 {

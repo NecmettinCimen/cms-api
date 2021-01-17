@@ -21,6 +21,7 @@ namespace cms_api.Context
             modelBuilder.Entity<ProjectTech>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Skill>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
+            modelBuilder.Entity<Contact>().HasQueryFilter(p => !p.IsDeleted);
             modelBuilder.Entity<User>().HasQueryFilter(p => !p.IsDeleted)
             .HasData(new User{Id=1,Email="admin", IsDeleted=false, Name="Admin", Password="123qwe", SurName="Admin"});
         }
@@ -34,5 +35,6 @@ namespace cms_api.Context
             public DbSet<Skill> Skills {get;set;}
             public DbSet<User> Users {get;set;}
             public DbSet<Product> Products {get;set;}
+            public DbSet<Contact> Contacts {get;set;}
     }
 }

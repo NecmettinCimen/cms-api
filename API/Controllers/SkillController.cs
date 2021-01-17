@@ -19,25 +19,29 @@ namespace cms_api.Controllers
             this.tReposiory = tReposiory;
         }
 
+        public string SkillIconFolder { get; set; } = "Skill_Icons";
 
         [Authorize]
         [HttpPost]
-        public override async Task<Skill> AddAsync([FromForm]Skill entity)
+        public override async Task<Skill> AddAsync([FromForm] Skill entity)
         {
-            var file = Request.Form.Files.First();
-            entity.Icon = Path.Combine(Request.Host.Host , await AssetsManageService.Save("Skill_Icons", file.FileName, file));
+            if (Request.Form.Files.Any())
+            {
+                var file = Request.Form.Files.First();
+                entity.Icon = Path.Combine(Request.Host.Host, await AssetsManageService.Save(SkillIconFolder, file.FileName, file));
+            }
             var result = await tReposiory.AddAsync(entity);
             return result;
         }
 
         [Authorize]
         [HttpPut]
-        public override async Task<Skill> UpdateAsync([FromForm]Skill entity)
+        public override async Task<Skill> UpdateAsync([FromForm] Skill entity)
         {
             if (Request.Form.Files.Any())
             {
                 var file = Request.Form.Files.First();
-                entity.Icon = Path.Combine(Request.Host.Host , await AssetsManageService.Save("Skill_Icons", file.FileName, file));
+                entity.Icon = Path.Combine(Request.Host.Host, await AssetsManageService.Save(SkillIconFolder, file.FileName, file));
             }
             var result = await tReposiory.UpdateAsync(entity);
             return result;
