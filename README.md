@@ -50,6 +50,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
+    <li><a href="#publish">Publish & Release on Docker</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -107,6 +108,25 @@ This is an example of how to list things you need to use the software and how to
 3. Goto
    ```HTML
    https://localhost/swagger
+   ```
+
+### Publish & Release on Docker
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/necmettincimen/cms-api.git
+   ```
+   Goto Api Directory
+   ```sh
+   cd cms-api && cd API
+   ```
+2. Build Image
+   ```sh
+   docker build -t cms-api .
+   ```
+3. Create Container 
+   ```sh
+   docker run -d --restart always --name cms-api -p 87:80 cms-api
    ```
 
 

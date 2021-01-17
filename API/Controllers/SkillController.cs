@@ -28,7 +28,7 @@ namespace cms_api.Controllers
             if (Request.Form.Files.Any())
             {
                 var file = Request.Form.Files.First();
-                entity.Icon = Path.Combine(Request.Host.Host, await AssetsManageService.Save(SkillIconFolder, file.FileName, file));
+                entity.Icon = await AssetsManageService.Save(SkillIconFolder, file.FileName, file);
             }
             var result = await tReposiory.AddAsync(entity);
             return result;
@@ -41,7 +41,7 @@ namespace cms_api.Controllers
             if (Request.Form.Files.Any())
             {
                 var file = Request.Form.Files.First();
-                entity.Icon = Path.Combine(Request.Host.Host, await AssetsManageService.Save(SkillIconFolder, file.FileName, file));
+                entity.Icon = await AssetsManageService.Save(SkillIconFolder, file.FileName, file);
             }
             var result = await tReposiory.UpdateAsync(entity);
             return result;
