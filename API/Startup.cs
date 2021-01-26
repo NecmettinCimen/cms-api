@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace cms_api
 {
@@ -23,11 +24,12 @@ namespace cms_api
         {
 
             services.AddControllers()
-            .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
+                .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
             services.AddJwtSwagger();
 
-            services.AddDbContext<CmsContext>();
+            services.AddDbContext<CmsContext>(options=>options.UseNpgsql(Configuration.GetConnectionString("CmsContext")));
+
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 

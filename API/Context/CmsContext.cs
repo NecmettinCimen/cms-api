@@ -5,9 +5,16 @@ namespace cms_api.Context
 {
     public class CmsContext:DbContext
     {
+        public CmsContext(DbContextOptions<CmsContext> options) : base(options)
+        {
+
+        }
+        public CmsContext()
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder options){
             options.EnableSensitiveDataLogging(false);
-            options.UseSqlite("Data Source=CmsContext.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
