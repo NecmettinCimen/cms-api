@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  cmsapi:
+    image: ${DOCKER_REGISTRY-}cmsapi
+    build:
+      context: .
+      dockerfile: API/Dockerfile
