@@ -55,6 +55,7 @@ namespace cms_api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
+                c.RoutePrefix="";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "cms_api v1");
             });
             app.UseAuthentication();

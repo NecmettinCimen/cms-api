@@ -27,32 +27,32 @@ namespace cms_api.Services
         {
             _logger.LogInformation("LoggerBackgroundService running.");
 
-#if !DEBUG
+// #if !DEBUG
             
-            while (true)
-            {
-                try
-                {
-                    var body = File.ReadAllText(".\\EmailTemplates\\cms-api-summary-api-template.html")
-            .Replace("zaman", DateTime.Now.ToString())
-            .Replace("istelsayi", istelsayi.ToString())
-            .Replace("hatasayisi", hatasayisi.ToString())
-            .Replace("kayitsayisi", kayitsayisi.ToString());
+//             while (true)
+//             {
+//                 try
+//                 {
+//                     var body = File.ReadAllText(".\\EmailTemplates\\cms-api-summary-api-template.html")
+//             .Replace("zaman", DateTime.Now.ToString())
+//             .Replace("istelsayi", istelsayi.ToString())
+//             .Replace("hatasayisi", hatasayisi.ToString())
+//             .Replace("kayitsayisi", kayitsayisi.ToString());
 
-                    EmailManage.AddEmailQueue(configuration, $"Cms Api Summary", body);
-                }
-                catch (Exception ex)
-                {
-                    _logger.LogInformation(
-                        "LoggerBackgroundService is error. {ex}", ex);
-                }
+//                     EmailManage.AddEmailQueue(configuration, $"Cms Api Summary", body);
+//                 }
+//                 catch (Exception ex)
+//                 {
+//                     _logger.LogInformation(
+//                         "LoggerBackgroundService is error. {ex}", ex);
+//                 }
 
-            _logger.LogInformation(
-                "LoggerBackgroundService is working. Time: {Time}", DateTime.Now);
+//             _logger.LogInformation(
+//                 "LoggerBackgroundService is working. Time: {Time}", DateTime.Now);
             
-                await Task.Delay(1000*60*60*12,stoppingToken);
-        }            
-#endif
+//                 await Task.Delay(1000*60*60*12,stoppingToken);
+//         }            
+// #endif
             return Task.CompletedTask;
 
         }
