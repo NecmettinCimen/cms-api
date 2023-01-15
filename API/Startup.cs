@@ -28,7 +28,14 @@ namespace cms_api
 
             services.AddJwtSwagger();
 
-            services.AddDbContext<CmsContext>(options=>options.UseNpgsql(Configuration.GetConnectionString("CmsContext")));
+            if (Configuration["DbType"] == "SqlServer")
+            {
+                services.AddDbContext<CmsContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CmsContext")));
+            }
+            else if (Configuration["DbType"] == "PostgreSQL")
+            {
+                services.AddDbContext<CmsContext>(options => options.UseNpgsql(Configuration.GetConnectionString("CmsContext")));
+            }
 
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped(typeof(IUserRepository), typeof(UserRepository));
@@ -55,7 +62,7 @@ namespace cms_api
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.RoutePrefix="";
+                c.RoutePrefix = "";
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "cms_api v1");
             });
             app.UseAuthentication();
