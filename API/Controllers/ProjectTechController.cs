@@ -6,12 +6,8 @@ namespace cms_api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class ProjectTechController : BaseController<ProjectTech>
+    public class ProjectTechController(IBaseRepository<ProjectTech> tReposiory)
+        : BaseController<ProjectTech>(tReposiory)
     {
-        private readonly IBaseRepository<ProjectTech> tReposiory;
-        public ProjectTechController(IBaseRepository<ProjectTech> tReposiory) : base(tReposiory)
-        {
-            this.tReposiory = tReposiory;
-        }
     }
 }

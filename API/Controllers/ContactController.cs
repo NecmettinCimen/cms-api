@@ -10,18 +10,11 @@ namespace cms_api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class ContactController : BaseController<Contact>
+    public class ContactController(
+        IBaseRepository<Contact> tReposiory,
+        IConfiguration configuration)
+        : BaseController<Contact>(tReposiory)
     {
-        private readonly IBaseRepository<Contact> tReposiory;
-        private readonly IConfiguration configuration;
-
-        public ContactController(IBaseRepository<Contact> tReposiory,
-        IConfiguration configuration) : base(tReposiory)
-        {
-            this.tReposiory = tReposiory;
-            this.configuration = configuration;
-        }
-
         [AllowAnonymous]
         [HttpPost]
         public override async Task<Contact> AddAsync(Contact entity)

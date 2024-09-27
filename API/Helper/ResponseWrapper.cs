@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace cms_api.Helper
 {
-    public class ResponseWrapper
+    public class ResponseWrapper(RequestDelegate next)
     {
-        private readonly RequestDelegate _next;
-        public ResponseWrapper(RequestDelegate next)
-        {
-            _next = next;
-        }
         public async Task Invoke(HttpContext context)
         {
             var currentBody = context.Response.Body;
@@ -23,7 +18,7 @@ namespace cms_api.Helper
                 try
                 {
                     Services.LoggerBackgroundService.istelsayi++;
-                    await _next(context);
+                    await next(context);
 
                     context.Response.Body = currentBody;
                     memoryStream.Seek(0, SeekOrigin.Begin);

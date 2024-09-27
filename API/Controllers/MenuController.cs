@@ -6,12 +6,7 @@ namespace cms_api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class MenuController : BaseController<Menu>
+    public class MenuController(IBaseRepository<Menu> tReposiory) : BaseController<Menu>(tReposiory)
     {
-        private readonly IBaseRepository<Menu> tReposiory;
-        public MenuController(IBaseRepository<Menu> tReposiory) : base(tReposiory)
-        {
-            this.tReposiory = tReposiory;
-        }
     }
 }

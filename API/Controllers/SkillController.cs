@@ -11,13 +11,9 @@ namespace cms_api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class SkillController : BaseController<Skill>
+    public class SkillController(IBaseRepository<Skill> tReposiory) : BaseController<Skill>(tReposiory)
     {
-        private readonly IBaseRepository<Skill> tReposiory;
-        public SkillController(IBaseRepository<Skill> tReposiory) : base(tReposiory)
-        {
-            this.tReposiory = tReposiory;
-        }
+        private readonly IBaseRepository<Skill> tReposiory = tReposiory;
 
         public string SkillIconFolder { get; set; } = "Skill_Icons";
 

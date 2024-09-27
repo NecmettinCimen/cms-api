@@ -6,12 +6,7 @@ namespace cms_api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class ExperienceController : BaseController<Experience>
+    public class ExperienceController(IBaseRepository<Experience> tReposiory) : BaseController<Experience>(tReposiory)
     {
-        private readonly IBaseRepository<Experience> tReposiory;
-        public ExperienceController(IBaseRepository<Experience> tReposiory) : base(tReposiory)
-        {
-            this.tReposiory = tReposiory;
-        }
     }
 }

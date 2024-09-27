@@ -6,26 +6,20 @@ using Microsoft.Extensions.Logging;
 
 namespace cms_api.Services
 {
-    public class LoggerBackgroundService : IHostedService
+    public class LoggerBackgroundService(
+        ILogger<LoggerBackgroundService> logger,
+        IConfiguration configuration)
+        : IHostedService
     {
 
         public static int istelsayi = 0;
         public static int hatasayisi = 0;
         public static int kayitsayisi = 0;
-        private readonly ILogger<LoggerBackgroundService> _logger;
-        private readonly IConfiguration configuration;
-
-        public LoggerBackgroundService(
-            ILogger<LoggerBackgroundService> logger,
-            IConfiguration configuration)
-        {
-            _logger = logger;
-            this.configuration = configuration;
-        }
+        private readonly IConfiguration configuration = configuration;
 
         public Task StartAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("LoggerBackgroundService running.");
+            logger.LogInformation("LoggerBackgroundService running.");
 
 // #if !DEBUG
             
@@ -58,7 +52,7 @@ namespace cms_api.Services
         }
         public Task StopAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("LoggerBackgroundService is stopping.");
+            logger.LogInformation("LoggerBackgroundService is stopping.");
 
             return Task.CompletedTask;
         }

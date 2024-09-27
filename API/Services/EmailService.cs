@@ -25,23 +25,14 @@ namespace cms_api.Services
 
         }
     }
-    public class EmailService : IHostedService
+    public class EmailService(
+        ILogger<EmailService> logger,
+        IConfiguration configuration)
+        : IHostedService
     {
-
-        private readonly ILogger<EmailService> _logger;
-        private readonly IConfiguration configuration;
-
-        public EmailService(
-            ILogger<EmailService> logger,
-            IConfiguration configuration)
-        {
-            _logger = logger;
-            this.configuration = configuration;
-        }
-
         public async Task StartAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("EmailService Service running.");
+            logger.LogInformation("EmailService Service running.");
 
             while (true)
             {
@@ -60,7 +51,7 @@ namespace cms_api.Services
 
         public Task StopAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("EmailService is stopping.");
+            logger.LogInformation("EmailService is stopping.");
 
             return Task.CompletedTask;
         }

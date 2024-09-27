@@ -6,12 +6,7 @@ namespace cms_api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class PageController : BaseController<Page>
+    public class PageController(IBaseRepository<Page> tReposiory) : BaseController<Page>(tReposiory)
     {
-        private readonly IBaseRepository<Page> tReposiory;
-        public PageController(IBaseRepository<Page> tReposiory) : base(tReposiory)
-        {
-            this.tReposiory = tReposiory;
-        }
     }
 }

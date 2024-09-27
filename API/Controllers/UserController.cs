@@ -12,16 +12,11 @@ namespace cms_api.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]
-    public class UserController : BaseController<User>
+    public class UserController(
+        IBaseRepository<User> tReposiory,
+        IUserRepository userReposiory)
+        : BaseController<User>(tReposiory)
     {
-        private readonly IBaseRepository<User> tReposiory;
-        private readonly IUserRepository userReposiory;
-        public UserController(IBaseRepository<User> tReposiory,
-        IUserRepository userReposiory) : base(tReposiory)
-        {
-            this.tReposiory = tReposiory;
-            this.userReposiory = userReposiory;
-        }
         [HttpGet]
         [Authorize]
         public override async Task<LoadResult> GetAll([FromQuery] DataSourceLoadOptionsBase loadOptions)

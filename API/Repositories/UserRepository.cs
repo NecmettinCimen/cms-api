@@ -14,14 +14,8 @@ namespace cms_api.Repositories
     public interface IUserRepository{
         Task<string> Authenticate(LoginDto model);
     }
-    public class UserRepository:IUserRepository
+    public class UserRepository(IBaseRepository<User> userRepository) : IUserRepository
     {
-        IBaseRepository<User> userRepository;
-        public UserRepository(IBaseRepository<User> userRepository)
-        {
-            this.userRepository = userRepository;
-        }
-
         public async Task<string> Authenticate(LoginDto model)
         {
             var user = await userRepository.GetAll().FirstOrDefaultAsync(f=>f.Email == model.Email && f.Password == model.Password);

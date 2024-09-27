@@ -14,20 +14,14 @@ namespace cms_api.Repositories
         Task<TEntity> UpdateAsync(TEntity entity);
         Task<TEntity> DeleteAsync(TEntity entity);
     }
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : BaseModel, new()
+    public class BaseRepository<TEntity>(CmsContext cmsContext) : IBaseRepository<TEntity>
+        where TEntity : BaseModel, new()
     {
-        private readonly CmsContext _cmsContext;
-
-        public BaseRepository(CmsContext cmsContext)
-        {
-            _cmsContext = cmsContext;
-        }
-
         public IQueryable<TEntity> GetAll()
         {
             try
             {
-                return _cmsContext.Set<TEntity>().AsNoTracking();
+                return cmsContext.Set<TEntity>().AsNoTracking();
             }
             catch (Exception ex)
             {
@@ -41,8 +35,8 @@ namespace cms_api.Repositories
             {
                 Services.LoggerBackgroundService.kayitsayisi++;
 
-                await _cmsContext.AddAsync(entity);
-                await _cmsContext.SaveChangesAsync();
+                await cmsContext.AddAsync(entity);
+                await cmsContext.SaveChangesAsync();
 
                 return entity;
             }
@@ -56,13 +50,13 @@ namespace cms_api.Repositories
         {
             try
             {
-                if (!await _cmsContext.Set<TEntity>().AnyAsync(a => a.Id == entity.Id))
+                if (!await cmsContext.Set<TEntity>().AnyAsync(a => a.Id == entity.Id))
                     throw new Exception($"{nameof(entity)} could not be finded: {entity.Id}");
 
                 Services.LoggerBackgroundService.kayitsayisi++;
 
-                _cmsContext.Update(entity);
-                await _cmsContext.SaveChangesAsync();
+                cmsContext.Update(entity);
+                await cmsContext.SaveChangesAsync();
 
                 return entity;
             }
@@ -78,8 +72,8 @@ namespace cms_api.Repositories
                 Services.LoggerBackgroundService.kayitsayisi++;
 
                 entity.IsDeleted = true;
-                _cmsContext.Update(entity);
-                await _cmsContext.SaveChangesAsync();
+                cmsContext.Update(entity);
+                await cmsContext.SaveChangesAsync();
 
                 return entity;
             }
