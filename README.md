@@ -23,7 +23,7 @@
     <a href="https://github.com/necmettincimen/cms-api"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/necmettincimen/cms-api">View Demo</a>
+    <a href="https://cms-api.necmettincimen.xyz/index.html">View Demo</a>
     ·
     <a href="https://github.com/necmettincimen/cms-api/issues">Report Bug</a>
     ·

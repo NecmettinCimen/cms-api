@@ -6,12 +6,12 @@ ARG BUILD_NUMBER
 COPY ./API/ ./API/
 
 # Build and publish a release
-RUN dotnet publish ./API/cms-api.csproj -c Release -o out /p:Version=${BUILD_NUMBER}
+RUN dotnet publish ./API/cms-api.csproj -c Release -o out
 
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /App
 COPY --from=build-env /App/out .
 
-ENTRYPOINT ["dotnet", "API.dll"]
+ENTRYPOINT ["dotnet", "cms-api.dll"]
 

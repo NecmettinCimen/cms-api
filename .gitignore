@@ -5,3 +5,5 @@
 /API/obj
 /TESTS/bin
 /TESTS/obj
+
+appsettings.development.json
