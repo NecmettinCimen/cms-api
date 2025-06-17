@@ -161,7 +161,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@Necmettin Cimen](https://necmettin.me) - [mail@necmettin.me](mailto:mail@necmettin.me)
+Necmettin Çimen - [@Necmettin Cimen](https://necmettincimen.github.io) - [necmettin.dev@gmail.com](mailto:necmettin.dev@gmail.com)
 
 Project Link: [https://github.com/necmettincimen/cms-api](https://github.com/necmettincimen/cms-api)
 
