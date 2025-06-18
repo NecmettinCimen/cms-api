@@ -1,4 +1,3 @@
-
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -18,7 +17,7 @@
   <h3 align="center">CMS-API</h3>
 
   <p align="center">
-    Developer Content Managment Api
+    Content Management System API with multi-database support and JWT authentication
     <br />
     <a href="https://github.com/necmettincimen/cms-api"><strong>Explore the docs »</strong></a>
     <br />
@@ -66,11 +65,13 @@
 
 <img src="swagger_content.png" alt="cms-api Screen Shot" >
 
-Developer Content Managment Api
+Content Management System API with multi-database support and JWT authentication
 
 A list of commonly used resources that I find helpful are listed in the acknowledgements.
 
 ### Built With
+
+**Technologies:** `csharp` `dotnet8` `entityframework` `postgresql` `sqlite` `sqlserver` `jwt` `swagger`
 
 This section should list any major frameworks that you built your project using. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
 * [Net Core](https://github.com/dotnet/core)
